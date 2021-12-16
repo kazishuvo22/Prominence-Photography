@@ -6,3 +6,13 @@ from django.shortcuts import render
 def home(request):
     page = "home"
     return render(request, page + ".html")
+
+
+def gallery(request):
+    page = "gallery"
+    return render(request, page + ".html")
+
+
+def team(request):
+    page = "team"
+    return render(request, page + ".html")
