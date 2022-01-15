@@ -16,3 +16,8 @@ def gallery(request):
 def team(request):
     page = "team"
     return render(request, page + ".html")
+
+
+def packages(request):
+    page = "packages"
+    return render(request, page + ".html")

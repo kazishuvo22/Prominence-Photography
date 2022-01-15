@@ -10,7 +10,7 @@
         <ul>
             <li><a class="nav-link scrollto" href="{% url 'home' %}">Home</a></li>
             <li><a class="nav-link scrollto" href="{% url 'home' %}#about">About</a></li>
-            <li><a class="nav-link scrollto" href="#">Packages</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'packages' %}">Packages</a></li>
             <li><a class="nav-link scrollto" href="{% url 'team' %}">Team</a></li>
             <li><a class="nav-link scrollto {% if 'gallery' in request.path %} active {% endif %} "
                    href="{% url 'gallery' %}">Gallery</a></li>
