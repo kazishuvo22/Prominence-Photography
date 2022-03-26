@@ -1,0 +1,43 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="inner-page" style="background: #c2d3cb">
+        <div class="container">
+            <!-- ======= Buy Ticket Section ======= -->
+            <section class="section-with-bg">
+                <div class="container" data-aos="fade-up">
+                    <div class="section-title" data-aos="fade-up">
+                        <span>Select Category</span>
+                        <h2>Our Main Categories</h2>
+                        <p>Here all of our main categories</p>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        {% for category in category_all %}
+                            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                                <div class="card mb-5 mb-lg-0 shadow" style="background: #71867c">
+                                    <div class="card-body">
+                                        {#                                    <h5 class="card-title text-muted text-uppercase text-center">Standard Access</h5>#}
+                                        {#                                    <h6 class="card-price text-center">$150</h6>#}
+                                        <a href="/media/{{ category.category_photo }}"
+                                           class="gallery-lightbox"><img
+                                                src="/media/{{ category.category_photo }}" class="img-fluid"
+                                                style="height: auto; width: auto" alt=""></a>
+                                        <hr style="color: white">
+                                        <div class="text-center">
+                                            <a type="button" class="btn btn-dark"
+                                               href="{% url 'packages_sub_category' category.id %}">
+                                                <i class="fa fa-photo-film"></i> {{ category.category_name }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+{% endblock %}

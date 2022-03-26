@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from django.db import models
 
-
 # Create your models here.
+from smart_selects.db_fields import ChainedForeignKey
+
 
 class General(models.Model):
     main_title = models.CharField(max_length=300, verbose_name="Main Title")
@@ -60,3 +61,47 @@ class Team(models.Model):
         return self.name
 
 
+class PackagesCategory(models.Model):
+    category_name = models.CharField(max_length=250, verbose_name="Enter Category Name")
+    category_photo = models.FileField(verbose_name="Home Background hero image", upload_to='Category_Image',
+                                      help_text="Only PNG, JPG, JPEG format supported",
+                                      validators=[FileExtensionValidator(
+                                          allowed_extensions=['png', 'jpg', 'jpeg'])])
+    created_at = datetime.datetime.now()
+
+    def __str__(self):
+        return self.category_name
+
+
+class SubPackagesCategory(models.Model):
+    main_category = models.ForeignKey(PackagesCategory, verbose_name='Select Main Category',
+                                      on_delete=models.CASCADE)
+    sub_category_name = models.CharField(max_length=250, verbose_name="Enter Category Name")
+    sub_category_photo = models.FileField(verbose_name="Sub Category Image", upload_to='Sub_Category_Image',
+                                          help_text="Only PNG, JPG, JPEG format supported",
+                                          validators=[FileExtensionValidator(
+                                              allowed_extensions=['png', 'jpg', 'jpeg'])])
+    created_at = datetime.datetime.now()
+
+    def __str__(self):
+        return self.sub_category_name
+
+
+class Packages(models.Model):
+    main_category = models.ForeignKey(PackagesCategory, on_delete=models.CASCADE,
+                                      verbose_name="Select Packages Category")
+    sub_category = ChainedForeignKey(SubPackagesCategory, verbose_name='Select Sub-Packages Category',
+                                     chained_field="main_category", chained_model_field="main_category",
+                                     auto_choose=True,
+                                     show_all=False, null=True, blank=True)
+    package_name = models.CharField(max_length=250, verbose_name="Enter package name")
+    package_price = models.IntegerField(verbose_name="Package Price")
+    package_details = RichTextField(verbose_name="Package Details")
+    package_photo = models.FileField(verbose_name="Package Image", upload_to='Package_Image',
+                                     help_text="Only PNG, JPG, JPEG format supported",
+                                     validators=[FileExtensionValidator(
+                                         allowed_extensions=['png', 'jpg', 'jpeg'])])
+    created_at = datetime.datetime.now()
+
+    def __str__(self):
+        return self.package_name

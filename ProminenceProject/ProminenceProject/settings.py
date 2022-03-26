@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ProminenceApp',
     'ckeditor',
-    'widget_tweaks'
+    'widget_tweaks',
+    'smart_selects'
 ]
 
 MIDDLEWARE = [
