@@ -50,7 +50,15 @@ class General(models.Model):
         return self.main_title
 
 
+team_category = (
+    ('1', 'lead'),
+    ('2', 'current'),
+    ('3', 'former')
+)
+
+
 class Team(models.Model):
+    team_category = models.CharField(max_length=250, choices=team_category, verbose_name="Select Team Category")
     name = models.CharField(max_length=250, verbose_name="Enter Member's Name")
     designation = models.CharField(max_length=250, verbose_name="Member Designation")
     email = models.CharField(max_length=250, verbose_name="Member's Email")
