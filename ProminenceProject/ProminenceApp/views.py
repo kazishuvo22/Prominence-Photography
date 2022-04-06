@@ -23,7 +23,13 @@ def gallery(request):
 
 def team(request):
     page = "team"
-    return render(request, page + ".html")
+    context = {
+        'team_lead': Team.objects.filter(team_category='1'),
+        'team_current': Team.objects.filter(team_category='2'),
+        'team_former': Team.objects.filter(team_category='3')
+
+    }
+    return render(request, page + ".html", context)
 
 
 def packages(request, sub_id):

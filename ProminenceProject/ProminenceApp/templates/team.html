@@ -2,9 +2,108 @@
 {% load static %}
 {% block content %}
 
-    <section class="inner-page">
+    <section class="inner-page" style="background: #c1d1c9;">
         <div class="container">
+            <!-- ======= Speakers Section ======= -->
+            <section id="speakers">
+                <div class="container" data-aos="fade-up">
+                    <div class="section-title" data-aos="fade-up">
+                        <span>Photography Team</span>
+                        <h2>Our Core Team</h2>
+                        <p>Here all of our core team members</p>
+                        <hr>
+                    </div>
+                    {#                Team Lead    #}
+                    {% if team_lead %}
+                        <div class="row justify-content-center">
+                        <h2 class="text-center text-decoration-underline"><b>Team Lead</b></h2>
+                    {% endif %}
+                    {% for member in team_lead %}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                                <a href="/media/{{ member.image }}" class="gallery-lightbox">
+                                    <img src="/media/{{ member.image }}" alt="Speaker 1" class="img-fluid"
+                                         style="height: 39rem!important;">
+                                </a>
+                                <div class="details">
+                                    <h3><a href="speaker-details.html">{{ member.name }}</a></h3>
+                                    <p>{{ member.designation }}</p>
+                                    <div class="social">
+                                        <a href="mailto:{{ member.email }}" title="Email"><i
+                                                class="bi bi-envelope"></i></a>
+                                        <a href="{{ member.facebook_link }}"><i class="bi bi-facebook"></i></a>
+                                        <a href="{{ member.instagram }}"><i class="bi bi-instagram"></i></a>
+                                        <a href="callto:{{ member.whatsapp_link }}"><i
+                                                class="bi bi-whatsapp"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <br>
 
+                    {#                Team Current Members    #}
+                    {% if team_current %}
+                        <div class="row justify-content-center">
+                        <h2 class="text-center text-decoration-underline"><b>Current Team Members</b></h2>
+                    {% endif %}
+                    {% for member in team_current %}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                                <a href="/media/{{ member.image }}" class="gallery-lightbox">
+                                    <img src="/media/{{ member.image }}" alt="Speaker 1" class="img-fluid"
+                                         style="height: 39rem!important;">
+                                </a>
+                                <div class="details">
+                                    <h3><a href="speaker-details.html">{{ member.name }}</a></h3>
+                                    <p>{{ member.designation }}</p>
+                                    <div class="social">
+                                        <a href="mailto:{{ member.email }}" title="Email"><i
+                                                class="bi bi-envelope"></i></a>
+                                        <a href="{{ member.facebook_link }}"><i class="bi bi-facebook"></i></a>
+                                        <a href="{{ member.instagram }}"><i class="bi bi-instagram"></i></a>
+                                        <a href="callto:{{ member.whatsapp_link }}"><i
+                                                class="bi bi-whatsapp"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <br>
+
+                    {#                Team Current Members    #}
+                    {% if team_former %}
+                        <div class="row justify-content-center">
+                        <h2 class="text-center text-decoration-underline"><b>Former Team Members</b></h2>
+                    {% endif %}
+                    {% for member in team_former %}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="speaker" data-aos="fade-up" data-aos-delay="100">
+                                <a href="/media/{{ member.image }}" class="gallery-lightbox">
+                                    <img src="/media/{{ member.image }}" alt="Speaker 1" class="img-fluid"
+                                         style="height: 39rem!important;">
+                                </a>
+                                <div class="details">
+                                    <h3><a href="speaker-details.html">{{ member.name }}</a></h3>
+                                    <p>{{ member.designation }}</p>
+                                    <div class="social">
+                                        <a href="mailto:{{ member.email }}" title="Email"><i
+                                                class="bi bi-envelope"></i></a>
+                                        <a href="{{ member.facebook_link }}"><i class="bi bi-facebook"></i></a>
+                                        <a href="{{ member.instagram }}"><i class="bi bi-instagram"></i></a>
+                                        <a href="callto:{{ member.whatsapp_link }}"><i
+                                                class="bi bi-whatsapp"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </section><!-- End Speakers Section -->
         </div>
     </section>
 {% endblock %}

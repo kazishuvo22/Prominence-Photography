@@ -61,9 +61,16 @@ class Team(models.Model):
     team_category = models.CharField(max_length=250, choices=team_category, verbose_name="Select Team Category")
     name = models.CharField(max_length=250, verbose_name="Enter Member's Name")
     designation = models.CharField(max_length=250, verbose_name="Member Designation")
-    email = models.CharField(max_length=250, verbose_name="Member's Email")
-    facebook_link = models.CharField(max_length=250, verbose_name="Enter Member's facebook link")
-    whatsapp_link = models.CharField(max_length=250, verbose_name="Enter Whatsapp link")
+    email = models.CharField(max_length=250, verbose_name="Member's Email", null=True, blank=True)
+    facebook_link = models.CharField(max_length=250, verbose_name="Enter Member's facebook link", null=True, blank=True,
+                                     help_text='You must input "http://" before insert your link')
+    whatsapp_link = models.CharField(max_length=250, verbose_name="Enter Whatsapp number", null=True, blank=True)
+    instagram_link = models.CharField(max_length=250, verbose_name="Enter instagram link", null=True, blank=True,
+                                      help_text='You must input "http://" before insert your link')
+    image = models.FileField(verbose_name="Team member image", upload_to='Team_image',
+                             help_text="Only PNG, JPG, JPEG format supported",
+                             validators=[FileExtensionValidator(
+                                 allowed_extensions=['png', 'jpg', 'jpeg'])])
 
     def __str__(self):
         return self.name
