@@ -18,7 +18,16 @@ def home(request):
 
 def gallery(request):
     page = "gallery"
-    return render(request, page + ".html")
+    category_name = set()
+    gallery_all = Gallery.objects.all()
+    for g in gallery_all:
+        category_name.add(g.gallery_category.category_name)
+
+    context = {
+        'category_name': category_name,
+        'gallery_all': gallery_all
+    }
+    return render(request, page + ".html", context)
 
 
 def team(request):

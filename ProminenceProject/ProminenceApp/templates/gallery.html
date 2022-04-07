@@ -13,61 +13,31 @@
                     <div class="section-title" data-aos="fade-up">
                         <span>Gallery</span>
                         <h2>Gallery</h2>
-                        <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+                        <p>Here are some samples of our photography</p>
+                        <hr>
                     </div>
-                    <div class="gallery-slider swiper" data-aos="fade-up">
-                        <div class="swiper-wrapper align-items-center">
-                            <div class="swiper-slide" data-aos="fade-up"><a href="{% static 'assets/img/gallery/1.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/1.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/2.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/2.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/3.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/3.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/4.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/4.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/5.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/5.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/6.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/6.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/7.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/7.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/8.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/8.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/1.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/1.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/2.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/2.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/3.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/3.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/4.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/4.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/5.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/5.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/6.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/6.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/7.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/7.jpg' %}" class="img-fluid" alt=""></a></div>
-                            <div class="swiper-slide"><a href="{% static 'assets/img/gallery/8.jpg' %}"
-                                                         class="gallery-lightbox"><img
-                                    src="{% static 'assets/img/gallery/8.jpg' %}" class="img-fluid" alt=""></a></div>
+
+                    {% for name in category_name %}
+                        <div class="row justify-content-center">
+                            <h2 class="text-center text-decoration-underline"><b>{{ name }}</b></h2>
                         </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
+                        <div class="gallery-slider swiper" data-aos="fade-up">
+                            <div class="swiper-wrapper align-items-center">
+                                {% for gallery in gallery_all %}
+                                    {% if name == gallery.gallery_category.category_name %}
+
+                                        <div class="swiper-slide" data-aos="fade-up"><a
+                                                href="/media/{{ gallery.photo }}"
+                                                class="gallery-lightbox"><img
+                                                src="/media/{{ gallery.photo }}" class="img-fluid"
+                                                alt=""></a></div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    {% endfor %}
+
                 </div>
             </section>
         </div>

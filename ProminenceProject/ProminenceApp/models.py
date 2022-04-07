@@ -3,7 +3,7 @@ import datetime
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
-from django.db import models
+from djongo import models
 
 # Create your models here.
 from smart_selects.db_fields import ChainedForeignKey
@@ -123,9 +123,13 @@ class Packages(models.Model):
 
 
 class Gallery(models.Model):
-    gallery_category = models.ForeignKey('PackagesCategory', verbose_name="Select Gallery Category",
+    _id = models.ObjectIdField()
+    gallery_category = models.ForeignKey(PackagesCategory, verbose_name="Select Gallery Category",
                                          on_delete=models.DO_NOTHING)
     photo = models.FileField(verbose_name="Gallery Image", upload_to='Gallery_image',
                              help_text="Only PNG, JPG, JPEG format supported",
                              validators=[FileExtensionValidator(
                                  allowed_extensions=['png', 'jpg', 'jpeg'])])
+
+    def __str__(self):
+        return self.gallery_category.category_name
