@@ -120,3 +120,12 @@ class Packages(models.Model):
 
     def __str__(self):
         return self.package_name
+
+
+class Gallery(models.Model):
+    gallery_category = models.ForeignKey('PackagesCategory', verbose_name="Select Gallery Category",
+                                         on_delete=models.DO_NOTHING)
+    photo = models.FileField(verbose_name="Gallery Image", upload_to='Gallery_image',
+                             help_text="Only PNG, JPG, JPEG format supported",
+                             validators=[FileExtensionValidator(
+                                 allowed_extensions=['png', 'jpg', 'jpeg'])])

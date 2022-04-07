@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'ProminenceApp',
     'ckeditor',
     'widget_tweaks',
-    'smart_selects'
+    'smart_selects',
+    'django_cleanup.apps.CleanupConfig'
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,6 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'statics'),
 ]
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
