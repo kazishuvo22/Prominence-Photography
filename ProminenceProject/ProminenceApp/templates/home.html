@@ -7,6 +7,16 @@
     <section id="hero">
         <div class="hero-container"
              style="background: url('{% static 'assets/img/hero/p1.jpg' %}') top right!important;" data-aos="fade-up">
+            {% if messages %}
+                {% for message in messages %}
+                    <div id="message_container"
+                         class="alert alert-{{ message.tags }} alert-dismissible text-center mt-3"
+                         role="alert">
+                        <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error{% else %}
+                            {{ message.tags|title }}{% endif %}!</strong> {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <h1 data-aos="fade-right">{{ general.main_title }}</h1>
             <h2 data-aos="fade-left">{{ general.advertise_title }}</h2>
             <a href="{{ general.home_video_link }}" class="glightbox play-btn mb-4" data-aos="fade-down"></a>
@@ -150,14 +160,15 @@
 
                 <div class="col-lg-6">
                     <form action="{% url 'contact' %}" method="post" class="php-email-form">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
                                        required>
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email"
-                                       placeholder="Your Email" required>
+                                <input type="text" class="form-control" name="phone" id="phone"
+                                       placeholder="Your Phone Number" required>
                             </div>
                         </div>
                         <div class="form-group mt-3">
@@ -165,13 +176,9 @@
                                    required>
                         </div>
                         <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="6" placeholder="Message"
-                                      required></textarea>
+                            <textarea class="form-control" name="message" rows="6" placeholder="Message"></textarea>
                         </div>
                         <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
                         </div>
                         <div class="text-center">
                             <button type="submit">Send Message</button>
@@ -184,7 +191,10 @@
         </div>
     </section><!-- End Contact Me Section -->
 
-    <style>
-
-    </style>
+    <script>
+        var message_ele = document.getElementById("message_container");
+        setTimeout(function () {
+            message_ele.style.display = "none";
+        }, 10000);
+    </script>
 {% endblock %}

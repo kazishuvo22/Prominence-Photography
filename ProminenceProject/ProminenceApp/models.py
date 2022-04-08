@@ -18,7 +18,7 @@ class General(models.Model):
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
-    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, auto_created=True)
     home_video_link = models.CharField(max_length=250, verbose_name="Enter youtube link for home video",
                                        help_text="Add 'http:// or https://' before your web address if not inserted, "
                                                  "Example:(http://example.com)")
@@ -65,7 +65,7 @@ class About(models.Model):
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
-    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, auto_created=True)
     last_edited = models.DateTimeField(auto_now=True)
 
     def save(self, **kwargs):
@@ -102,6 +102,7 @@ class Team(models.Model):
                              help_text="Only PNG, JPG, JPEG format supported",
                              validators=[FileExtensionValidator(
                                  allowed_extensions=['png', 'jpg', 'jpeg'])])
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -113,7 +114,7 @@ class PackagesCategory(models.Model):
                                       help_text="Only PNG, JPG, JPEG format supported",
                                       validators=[FileExtensionValidator(
                                           allowed_extensions=['png', 'jpg', 'jpeg'])])
-    created_at = datetime.datetime.now()
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.category_name
@@ -127,7 +128,7 @@ class SubPackagesCategory(models.Model):
                                           help_text="Only PNG, JPG, JPEG format supported",
                                           validators=[FileExtensionValidator(
                                               allowed_extensions=['png', 'jpg', 'jpeg'])])
-    created_at = datetime.datetime.now()
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.sub_category_name
@@ -147,7 +148,7 @@ class Packages(models.Model):
                                      help_text="Only PNG, JPG, JPEG format supported",
                                      validators=[FileExtensionValidator(
                                          allowed_extensions=['png', 'jpg', 'jpeg'])])
-    created_at = datetime.datetime.now()
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.package_name
@@ -161,6 +162,7 @@ class Gallery(models.Model):
                              help_text="Only PNG, JPG, JPEG format supported",
                              validators=[FileExtensionValidator(
                                  allowed_extensions=['png', 'jpg', 'jpeg'])])
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.gallery_category.category_name
@@ -168,9 +170,11 @@ class Gallery(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=250, verbose_name="Customer Name")
-    email = models.EmailField(verbose_name="Customer Email")
+    phone = models.CharField(max_length=250, verbose_name="Customer Phone")
     subject = models.CharField(max_length=250)
     message = models.TextField()
+    message_time = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=250)
 
     def __str__(self):
         return self.name
