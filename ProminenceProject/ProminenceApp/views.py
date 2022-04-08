@@ -1,6 +1,7 @@
 from django.core import serializers
 from django.core.cache import cache
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from ProminenceApp.models import *
 
 
@@ -74,4 +75,4 @@ def packages_sub_category(request, category_id):
 
 
 def contact(request):
-    pass
+    return HttpResponse('Ok')
