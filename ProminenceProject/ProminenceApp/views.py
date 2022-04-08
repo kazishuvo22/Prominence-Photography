@@ -9,9 +9,14 @@ from ProminenceApp.models import *
 def home(request):
     page = "home"
 
+    general_all = General.objects.all().last()
+    about_all = About.objects.all().last()
+
     context = {
         'all_main_category': PackagesCategory.objects.all(),
-        'all_sub_category': SubPackagesCategory.objects.all()
+        'all_sub_category': SubPackagesCategory.objects.all(),
+        'general': general_all,
+        'about': about_all
     }
     return render(request, page + ".html", context)
 
@@ -66,3 +71,7 @@ def packages_sub_category(request, category_id):
         'all_sub_category': SubPackagesCategory.objects.filter(main_category=category_id)
     }
     return render(request, page + ".html", context)
+
+
+def contact(request):
+    pass

@@ -690,9 +690,8 @@ section {
 }
 
 .about .image {
-    background: url("../img/me.jpg") center center no-repeat;
-    background-size: cover;
-    min-height: 500px;
+    background-size: cover!important;
+    min-height: 500px!important;
 }
 
 .about .skills-content {
