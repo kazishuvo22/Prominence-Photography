@@ -18,7 +18,7 @@ class General(models.Model):
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
-    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, editable=False, null=True, blank=True)
+    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
     home_video_link = models.CharField(max_length=250, verbose_name="Enter youtube link for home video",
                                        help_text="Add 'http:// or https://' before your web address if not inserted, "
                                                  "Example:(http://example.com)")
