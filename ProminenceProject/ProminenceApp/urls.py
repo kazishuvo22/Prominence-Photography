@@ -1,4 +1,3 @@
-from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path, include
@@ -15,5 +14,5 @@ urlpatterns = [
                   path('packages_sub_category/<str:category_id>/', views.packages_sub_category,
                        name="packages_sub_category"),
                   path('contact/', views.contact, name='contact'),
-                  url(r'^chaining/', include('smart_selects.urls')),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
