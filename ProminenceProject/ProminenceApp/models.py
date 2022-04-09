@@ -13,13 +13,13 @@ from tinymce.models import HTMLField
 class General(models.Model):
     main_title = models.CharField(max_length=300, verbose_name="Main Title")
     advertise_title = models.CharField(max_length=300, verbose_name="Advertisement Title")
-    terms = RichTextField(verbose_name="Enter terms and conditions")
+    terms = HTMLField(verbose_name="Enter terms and conditions")
     hero_image_field = models.FileField(verbose_name="Home Background hero image", upload_to='Homepage_images',
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
     last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
-    policy = RichTextField(verbose_name="Enter policy")
+    policy = HTMLField(verbose_name="Enter policy")
     home_video_link = models.CharField(max_length=250, verbose_name="Enter youtube link for home video",
                                        help_text="Add 'http:// or https://' before your web address if not inserted, "
                                                  "Example:(http://example.com)")
@@ -144,7 +144,7 @@ class Packages(models.Model):
                                      show_all=False, null=True, blank=True)
     package_name = models.CharField(max_length=250, verbose_name="Enter package name")
     package_price = models.IntegerField(verbose_name="Package Price")
-    package_details = RichTextField()
+    package_details = HTMLField()
     package_photo = models.FileField(verbose_name="Package Image", upload_to='Package_Image',
                                      help_text="Only PNG, JPG, JPEG format supported",
                                      validators=[FileExtensionValidator(
