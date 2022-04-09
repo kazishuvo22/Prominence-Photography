@@ -13,12 +13,12 @@ class General(models.Model):
     main_title = models.CharField(max_length=300, verbose_name="Main Title")
     advertise_title = models.CharField(max_length=300, verbose_name="Advertisement Title")
     terms = RichTextField(verbose_name="Enter terms and conditions")
-    policy = RichTextField(verbose_name="Enter policy")
     hero_image_field = models.FileField(verbose_name="Home Background hero image", upload_to='Homepage_images',
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
     last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
+    policy = RichTextField(verbose_name="Enter policy")
     home_video_link = models.CharField(max_length=250, verbose_name="Enter youtube link for home video",
                                        help_text="Add 'http:// or https://' before your web address if not inserted, "
                                                  "Example:(http://example.com)")
@@ -57,7 +57,6 @@ class General(models.Model):
 class About(models.Model):
     short_about = models.TextField(max_length=300, verbose_name="Site Short About",
                                    help_text="Not more than 300 character")
-    long_about = RichTextField(verbose_name="Site Long About", null=True, blank=True)
     happy_clients = models.IntegerField(verbose_name="Enter Happy clients Count", blank=True, null=True)
     years_of_experience = models.IntegerField(verbose_name="Enter the company work of experiences", blank=True,
                                               null=True)
@@ -66,6 +65,7 @@ class About(models.Model):
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
     last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
+    long_about = RichTextField(verbose_name="Site Long About", null=True, blank=True)
     last_edited = models.DateTimeField(auto_now=True)
 
     def save(self, **kwargs):
@@ -143,7 +143,7 @@ class Packages(models.Model):
                                      show_all=False, null=True, blank=True)
     package_name = models.CharField(max_length=250, verbose_name="Enter package name")
     package_price = models.IntegerField(verbose_name="Package Price")
-    package_details = RichTextField(verbose_name="Package Details")
+    package_details = RichTextField()
     package_photo = models.FileField(verbose_name="Package Image", upload_to='Package_Image',
                                      help_text="Only PNG, JPG, JPEG format supported",
                                      validators=[FileExtensionValidator(
