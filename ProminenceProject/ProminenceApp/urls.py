@@ -16,4 +16,4 @@ urlpatterns = [
                        name="packages_sub_category"),
                   path('contact/', views.contact, name='contact'),
                   url(r'^chaining/', include('smart_selects.urls')),
-              ]
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
