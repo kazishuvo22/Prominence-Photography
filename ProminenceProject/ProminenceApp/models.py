@@ -7,6 +7,7 @@ from djongo import models
 
 # Create your models here.
 from smart_selects.db_fields import ChainedForeignKey
+from tinymce.models import HTMLField
 
 
 class General(models.Model):
@@ -65,7 +66,7 @@ class About(models.Model):
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
     last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
-    long_about = RichTextField(verbose_name="Site Long About", null=True, blank=True)
+    long_about = HTMLField(verbose_name="Site Long About", null=True, blank=True)
     last_edited = models.DateTimeField(auto_now=True)
 
     def save(self, **kwargs):
