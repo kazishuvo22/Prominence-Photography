@@ -61,7 +61,7 @@ class About(models.Model):
     happy_clients = models.IntegerField(verbose_name="Enter Happy clients Count", blank=True, null=True)
     years_of_experience = models.IntegerField(verbose_name="Enter the company work of experiences", blank=True,
                                               null=True)
-    about_body_image = models.FileField(verbose_name="About section body image", upload_to='About image',
+    about_body_image = models.FileField(verbose_name="About section body image", upload_to='About_image',
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
