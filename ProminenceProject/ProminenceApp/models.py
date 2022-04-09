@@ -14,7 +14,7 @@ class General(models.Model):
     advertise_title = models.CharField(max_length=300, verbose_name="Advertisement Title")
     terms = RichTextField(verbose_name="Enter terms and conditions")
     policy = RichTextField(verbose_name="Enter policy")
-    hero_image_field = models.FileField(verbose_name="Home Background hero image", upload_to='services_images',
+    hero_image_field = models.FileField(verbose_name="Home Background hero image", upload_to='Homepage_images',
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
@@ -154,10 +154,20 @@ class Packages(models.Model):
         return self.package_name
 
 
+def number():
+    no = Gallery.objects.count()
+    if no is None:
+        return 1
+    else:
+        return no + 1
+
+
 class Gallery(models.Model):
     _id = models.ObjectIdField()
+
+    image_no = models.CharField(max_length=250, unique=True, default=number, editable=False, verbose_name="Image Serial")
     gallery_category = models.ForeignKey(PackagesCategory, verbose_name="Select Gallery Category",
-                                         on_delete=models.DO_NOTHING)
+                                         on_delete=models.CASCADE)
     photo = models.FileField(verbose_name="Gallery Image", upload_to='Gallery_image',
                              help_text="Only PNG, JPG, JPEG format supported",
                              validators=[FileExtensionValidator(

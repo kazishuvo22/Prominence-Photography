@@ -5,8 +5,8 @@
     <!-- ======= Hero Section ======= -->
 
     <section id="hero">
-        <div class="hero-container"
-             style="background: url('{% static 'assets/img/hero/p1.jpg' %}') top right!important;" data-aos="fade-up">
+        <div class="hero-container img-fluid"
+             style="background: url('/media/{{ general.hero_image_field }}');" data-aos="fade-up">
             {% if messages %}
                 {% for message in messages %}
                     <div id="message_container"
