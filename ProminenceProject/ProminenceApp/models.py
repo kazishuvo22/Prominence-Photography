@@ -36,8 +36,8 @@ class General(models.Model):
                                      help_text="Add 'http:// or https://' before your web address if not inserted, "
                                                "Example:(http://example.com)")
     youtube_link = models.CharField(max_length=300, verbose_name="Youtube Link",
-                                  help_text="Add 'http:// or https://' before your web address if not inserted, "
-                                            "Example:(http://example.com)")
+                                    help_text="Add 'http:// or https://' before your web address if not inserted, "
+                                              "Example:(http://example.com)")
 
     mode = models.CharField(max_length=100, verbose_name="Select Mode",
                             choices=(('1', 'production'), ('2', 'development')))
@@ -154,18 +154,18 @@ class Packages(models.Model):
         return self.package_name
 
 
-def number():
-    no = Gallery.objects.count()
-    if no is None:
-        return 1
-    else:
-        return no + 1
-
-
 class Gallery(models.Model):
     _id = models.ObjectIdField()
 
-    image_no = models.CharField(max_length=250, unique=True, default=number, editable=False, verbose_name="Image Serial")
+    # def number():
+    #     no = Gallery.objects.count()
+    #     if no is None:
+    #         return 1
+    #     else:
+    #         return no + 1
+    #
+    # image_no = models.CharField(max_length=250, unique=True, default=number, editable=False,
+    #                             verbose_name="")
     gallery_category = models.ForeignKey(PackagesCategory, verbose_name="Select Gallery Category",
                                          on_delete=models.CASCADE)
     photo = models.FileField(verbose_name="Gallery Image", upload_to='Gallery_image',

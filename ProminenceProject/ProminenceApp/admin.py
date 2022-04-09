@@ -118,7 +118,7 @@ admin.site.register(SubPackagesCategory, SubPackagesCategoryAdmin)
 
 
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ['image_no', 'gallery_category', 'photo', 'image_tag']
+    list_display = ['_id', 'gallery_category', 'photo', 'image_tag']
     list_filter = ['gallery_category']
 
     def image_tag(self, obj):
