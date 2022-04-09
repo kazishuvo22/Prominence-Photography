@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'ckeditor',
     'widget_tweaks',
     'smart_selects',
-    'django_cleanup.apps.CleanupConfig'
+    'django_cleanup.apps.CleanupConfig',
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'ProminenceProject.urls'
 

@@ -5,3 +5,4 @@ django-ckeditor
 django-widget-tweaks~=1.4.8
 django-smart-selects~=1.5.9
 django-cleanup~=6.0.0
+whitenoise~=6.0.0
