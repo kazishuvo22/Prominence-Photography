@@ -65,7 +65,7 @@ class About(models.Model):
                                         help_text="Only PNG, JPG, JPEG format supported",
                                         validators=[FileExtensionValidator(
                                             allowed_extensions=['png', 'jpg', 'jpeg'])])
-    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, editable=False)
+    last_author = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
     last_edited = models.DateTimeField(auto_now=True)
 
     def save(self, **kwargs):
