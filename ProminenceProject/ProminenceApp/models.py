@@ -35,7 +35,7 @@ class General(models.Model):
     linkedin_link = models.CharField(max_length=300, verbose_name="Linkedin Link",
                                      help_text="Add 'http:// or https://' before your web address if not inserted, "
                                                "Example:(http://example.com)")
-    skype_link = models.CharField(max_length=300, verbose_name="Skype Link",
+    youtube_link = models.CharField(max_length=300, verbose_name="Youtube Link",
                                   help_text="Add 'http:// or https://' before your web address if not inserted, "
                                             "Example:(http://example.com)")
 

@@ -21,6 +21,11 @@ def home(request):
             'general': general_all,
             'about': about_all
         }
+        request.session['facebook_link'] = context['general'].facebook_link
+        request.session['instagram_link'] = context['general'].instagram_link
+        request.session['whatsapp_link'] = context['general'].whatsapp_link
+        request.session['youtube_link'] = context['general'].youtube_link
+        request.session['linkedin_link'] = context['general'].linkedin_link
         return render(request, page + ".html", context)
     else:
         return render(request, "missing_general.html")
