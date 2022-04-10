@@ -3,6 +3,8 @@
     <div class="container">
         <h3>Prominence Photography</h3>
         <p>“The best thing about a picture is that it never changes, even when the people in it do.”</p>
+        <h4 class="text-center"><i class="fa fa-location"></i> <b>Office Location</b></h4>
+        <p class="text-center">{{ request.session.address }}</p>
         <div class="social-links">
             <a href="{{ request.session.facebook_link }}" class="facebook"><i class="bx bxl-facebook"></i></a>
             <a href="{{ request.session.instagram_link }}" class="instagram"><i class="bx bxl-instagram"></i></a>

@@ -26,6 +26,7 @@ def home(request):
         request.session['whatsapp_link'] = context['general'].whatsapp_link
         request.session['youtube_link'] = context['general'].youtube_link
         request.session['linkedin_link'] = context['general'].linkedin_link
+        request.session['address'] = context['general'].address
         return render(request, page + ".html", context)
     else:
         return render(request, "missing_general.html")
