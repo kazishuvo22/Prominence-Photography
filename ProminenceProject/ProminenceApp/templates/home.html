@@ -40,7 +40,7 @@
         <div class="container">
 
             <div class="section-title">
-                <span>About Us</span>
+{#                <span>About Us</span>#}
                 <h2>About Us</h2>
                 <p>"{{ about.short_about }}"</p>
             </div>
@@ -70,9 +70,7 @@
                             <div class="col-md-6 mt-5 d-md-flex align-items-md-stretch">
                                 <div class="count-box">
                                     <i class="bi bi-clock" style="color: #2cbdee;"></i>
-                                    <span data-purecounter-start="0"
-                                          data-purecounter-end="{{ about.years_of_experience }}"
-                                          data-purecounter-duration="1" class="purecounter"></span>
+                                    <span>{{ about.years_of_experience }}</span>
                                     <p><strong>Years of experience</strong> of photography which help us to keep our
                                         promises.</p>
                                 </div>
