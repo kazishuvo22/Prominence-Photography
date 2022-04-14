@@ -40,7 +40,7 @@ class Team_Sitemap(Sitemap):
         return Team.objects.all()
 
     def location(self, obj):
-        return obj.name
+        return '/team/'
 
     def lastmod(self, obj):
         return obj.created_at
@@ -54,7 +54,7 @@ class PackagesCategory_Sitemap(Sitemap):
         return PackagesCategory.objects.all()
 
     def location(self, obj):
-        return obj.category_name
+        return '/packages_category/'
 
     def lastmod(self, obj):
         return obj.created_at
@@ -68,7 +68,7 @@ class SubPackagesCategory_Sitemap(Sitemap):
         return SubPackagesCategory.objects.all()
 
     def location(self, obj):
-        return obj.sub_category_name
+        return '/packages_category/' + str(obj.id)
 
     def lastmod(self, obj):
         return obj.created_at
@@ -82,7 +82,7 @@ class Packages_Sitemap(Sitemap):
         return Packages.objects.all()
 
     def location(self, obj):
-        return obj.package_name
+        return '/packages/' + str(obj.id)
 
     def lastmod(self, obj):
         return obj.created_at
