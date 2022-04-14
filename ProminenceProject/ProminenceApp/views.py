@@ -30,6 +30,7 @@ def home(request):
         request.session['address'] = context['general'].address
         request.session['terms'] = context['general'].terms
         request.session['policy'] = context['general'].policy
+        request.session['phone'] = context['general'].phone
         return render(request, page + ".html", context)
     else:
         return render(request, "missing_general.html")

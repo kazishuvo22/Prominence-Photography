@@ -8,7 +8,7 @@
             <section id="buy-tickets" class="section-with-bg">
                 <div class="container" data-aos="fade-up">
                     <div class="section-title" data-aos="fade-up">
-{#                        <span>Photography Packages</span>#}
+                        {#                        <span>Photography Packages</span>#}
                         <h2>Packages</h2>
                         <p>Here all of our current packages</p>
                     </div>
@@ -26,10 +26,12 @@
                                                             style="height: auto; width: auto" alt=""></a>
                                                     <h5 class="card-title text-uppercase text-center"
                                                         style="font-size: large">
-                                                        <span>Main Category:</span> <span class="text-black">{{ packages.main_category }} </span></h5>
+                                                        <span>Main Category:</span> <span
+                                                            class="text-black">{{ packages.main_category }} </span></h5>
                                                     <h5 class="card-title text-uppercase text-center"
                                                         style="font-size: large">
-                                                        <span>Sub Category: </span> <span class="text-black">{{ packages.sub_category }}</span></h5>
+                                                        <span>Sub Category: </span> <span
+                                                            class="text-black">{{ packages.sub_category }}</span></h5>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6">
@@ -82,30 +84,53 @@
                 <div id="buy-ticket-modal" class="modal fade">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Buy Packages</h4>
+                            <div class="modal-header" style="background: #5e8a77">
+                                <h4 class="modal-title text-white">Book Package</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <form method="POST" action="#">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="your-name"
-                                               placeholder="Your Name">
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <input type="text" class="form-control" name="your-phone"
-                                               placeholder="Your Phone" >
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <div id="ticket-type" name="ticket-type" class="form-control">
-                                           Standard Access
-                                        </div>
-                                    </div>
-                                    <div class="text-center mt-3">
-                                        <button type="submit" class="btn">Buy Now</button>
-                                    </div>
-                                </form>
+                            <div class="modal-body alert-secondary">
+                                {#                                <form method="POST" action="#">#}
+                                {#                                    <div class="form-group">#}
+                                {#                                        <input type="text" class="form-control" name="your-name"#}
+                                {#                                               placeholder="Your Name">#}
+                                {#                                    </div>#}
+                                {#                                    <div class="form-group mt-3">#}
+                                {#                                        <input type="text" class="form-control" name="your-phone"#}
+                                {#                                               placeholder="Your Phone" >#}
+                                {#                                    </div>#}
+                                {#                                    <div class="form-group mt-3">#}
+                                {#                                        <div id="ticket-type" name="ticket-type" class="form-control">#}
+                                {#                                           Standard Access#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                    <div class="text-center mt-3">#}
+                                {#                                        <button type="submit" class="btn">Buy Now</button>#}
+                                {#                                    </div>#}
+                                {#                                </form>#}
+                                <div class="alert-primary p-2">
+                                    <p><b>For booking this package please contact the below information.</b></p>
+                                </div>
+                                <div class="alert-primary p-2">
+                                    <p>
+                                        <b><i class="fa-solid fa-phone"></i> Phone: </b>
+                                        <a target="_blank" style="color: red" href="callto:{{ request.session.phone }}">
+                                            {{ request.session.phone }}
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <b><i class="fa-brands fa-facebook"></i> Facebook: </b>
+                                        <a target="_blank" style="color: red" href="{{ request.session.facebook_link }}">
+                                           <i class="fa-solid fa-computer-mouse"></i> Click Here!
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <b><i class="fa-brands fa-instagram"></i> Instagram: </b>
+                                        <a target="_blank" style="color: red" href="{{ request.session.instagram_link }}">
+                                           <i class="fa-solid fa-computer-mouse"></i> Click Here!
+                                        </a>
+                                    </p>
+                                </div>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
