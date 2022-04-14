@@ -18,29 +18,33 @@
             </li>
             <li><a class="nav-link scrollto {% if 'gallery' in request.path %} active {% endif %} "
                    href="{% url 'gallery' %}"><i class="fa fa-photo-video"></i>&nbsp; Gallery</a></li>
-{#            <li class="dropdown"><a href="{% url 'packages_category' %}"><span><i class="fa fa-boxes-packing"></i>&nbsp;Packages</span>#}
-{#                <i#}
-{#                        class="bi bi-chevron-down"></i></a>#}
-{#                <ul>#}
-{#                    {% for main in all_main_category %}#}
-{#                        <li class="dropdown"><a href=""><span>#}
-{#                            {{ main.category_name }}#}
-{#                    </span> <i#}
-{#                                class="bi bi-chevron-right"></i></a>#}
-{#                            <ul>#}
-{#                                {% for sub in all_sub_category %}#}
-{#                                    {% if sub.main_category.id == main.id %}#}
-{#                                        <li><a href="{% url 'packages' sub.id %}">{{ sub.sub_category_name }}</a></li>#}
-{#                                    {% endif %}#}
-{#                                {% endfor %}#}
-{#                            </ul>#}
-{##}
-{#                        </li>#}
-{#                    {% endfor %}#}
-{#                </ul>#}
-{#            </li>#}
+            {#            <li class="dropdown"><a href="{% url 'packages_category' %}"><span><i class="fa fa-boxes-packing"></i>&nbsp;Packages</span>#}
+            {#                <i#}
+            {#                        class="bi bi-chevron-down"></i></a>#}
+            {#                <ul>#}
+            {#                    {% for main in all_main_category %}#}
+            {#                        <li class="dropdown"><a href=""><span>#}
+            {#                            {{ main.category_name }}#}
+            {#                    </span> <i#}
+            {#                                class="bi bi-chevron-right"></i></a>#}
+            {#                            <ul>#}
+            {#                                {% for sub in all_sub_category %}#}
+            {#                                    {% if sub.main_category.id == main.id %}#}
+            {#                                        <li><a href="{% url 'packages' sub.id %}">{{ sub.sub_category_name }}</a></li>#}
+            {#                                    {% endif %}#}
+            {#                                {% endfor %}#}
+            {#                            </ul>#}
+            {##}
+            {#                        </li>#}
+            {#                    {% endfor %}#}
+            {#                </ul>#}
+            {#            </li>#}
             <li><a class="nav-link scrollto" href="{% url 'home' %}#contact"> <i class="fa fa-contact-book"></i>&nbsp;
                 Contact</a></li>
+
+            <li><a class="nav-link {% if 'terms' in request.path %} active {% endif %} scrollto"
+                   href="{% url 'terms' %}"> <i class="fa-solid fa-triangle-exclamation"></i>&nbsp;
+                Terms</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

@@ -14,5 +14,6 @@ urlpatterns = [
                   path('packages_sub_category/<str:category_id>/', views.packages_sub_category,
                        name="packages_sub_category"),
                   path('contact/', views.contact, name='contact'),
+                  path('terms/', views.terms, name='terms'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

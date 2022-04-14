@@ -118,3 +118,10 @@ def contact(request):
         return redirect('home')
     else:
         return render(request, "missing_general.html")
+
+
+def terms(request):
+    context = {
+        'term': General.objects.get(id=1).terms
+    }
+    return render(request, "terms.html", context)

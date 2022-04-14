@@ -1,0 +1,29 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="inner-page" style="background: #c1d1c9;">
+        <div class="container">
+            <!-- ======= My Gallery Section ======= -->
+
+            <!-- ======= Gallery Section ======= -->
+            <section class="about">
+                <div class="container">
+                    <div class="section-title" data-aos="fade-up">
+                        {#                        <span>Gallery</span>#}
+                        <h2>Terms and Conditions</h2>
+                        <p>Please read the terms and conditions carefully</p>
+                        <hr>
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 alert-success rounded-2 p-3">
+                                {% autoescape off %}
+                                    {{ term }}
+                                {% endautoescape %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+{% endblock %}
