@@ -12,7 +12,7 @@ class General_Sitemap(Sitemap):
         return General.objects.all()
 
     def location(self, obj):
-        return obj.main_title
+        return '/'
 
     def lastmod(self, obj):
         return obj.last_edited
@@ -26,7 +26,7 @@ class About_Sitemap(Sitemap):
         return About.objects.all()
 
     def location(self, obj):
-        return obj.short_about
+        return '/#about'
 
     def lastmod(self, obj):
         return obj.last_edited
