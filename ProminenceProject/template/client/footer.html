@@ -9,49 +9,52 @@
                 <p class="text-center">{{ request.session.address }}</p>
             </div>
             <div class="col-lg-4 col-md-6">
-                <h5 class="text-center"><i class="fa fa-code"></i> <b> Terms and Conditions</b></h5>
+                <h5 class="text-center"><i class="fa-solid fa-lock"></i> <b> Terms and Policy</b></h5>
                 <span><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                         data-bs-target="#exampleModal1">Terms</button> </span> &nbsp;
+                              data-bs-target="#exampleModal1">Terms</button> </span> &nbsp;
                 <span><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                         data-bs-target="#exampleModal2">Policy</button> </span>
-            </div>
-            <!-- Modal Terms -->
-            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel1">Terms</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            {% autoescape off %}
-                                {{ request.session.terms }}
-                            {% endautoescape %}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                              data-bs-target="#exampleModal2">Policy</button> </span>
+
+                <!-- Modal Terms -->
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background: #768362">
+                                <h5 class="modal-title" id="exampleModalLabel1">Terms</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="background: #9a9a9a;">
+                                {% autoescape off %}
+                                    {{ request.session.terms }}
+                                {% endautoescape %}
+                            </div>
+                            <div class="modal-footer" style="background: #768362">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Modal Policy -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel2">Policy</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            {% autoescape off %}
-                                {{ request.session.policy }}
-                            {% endautoescape %}
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <!-- Modal Policy -->
+                <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background: #768362">
+                                <h5 class="modal-title" id="exampleModalLabel2" >Policy</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="background: #9a9a9a;">
+                                {% autoescape off %}
+                                    {{ request.session.policy }}
+                                {% endautoescape %}
+                            </div>
+                            <div class="modal-footer" style="background: #768362">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
