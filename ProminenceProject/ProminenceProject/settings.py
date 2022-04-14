@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'smart_selects',
     'django_cleanup.apps.CleanupConfig',
-    'tinymce'
+    'tinymce',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [

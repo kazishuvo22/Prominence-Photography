@@ -19,6 +19,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.views.static import serve
+from django.contrib.sitemaps.views import sitemap
+
+from ProminenceApp.sitemaps import *
+from django.contrib.sitemaps import GenericSitemap
+
+sitemaps = {
+    'general': General_Sitemap(),
+    'about': About_Sitemap(),
+    'team': Team_Sitemap(),
+    'packages': Packages_Sitemap(),
+    'category': PackagesCategory_Sitemap(),
+    'sub_category': SubPackagesCategory_Sitemap(),
+}
 
 urlpatterns = [
                   path('myportal/', admin.site.urls),
@@ -28,5 +41,7 @@ urlpatterns = [
                   url(r'^media/(?P<path>.*)$', serve,
                       {'document_root': settings.MEDIA_ROOT}),
                   url(r'^statics/(?P<path>.*)$', serve,
-                      {'document_root': settings.STATIC_ROOT})
+                      {'document_root': settings.STATIC_ROOT}),
+                  path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+                       name='django.contrib.sitemaps.views.sitemap'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
