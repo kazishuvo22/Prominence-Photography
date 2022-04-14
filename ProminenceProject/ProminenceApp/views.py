@@ -12,21 +12,24 @@ from ProminenceApp.models import *
 def home(request):
     page = "home"
     if General.objects.filter(mode='1').exists():
-        general_all = General.objects.all().last()
-        about_all = About.objects.all().last()
+        general_all = General.objects.get(id=1)
+        about_all = About.objects.get(id=1)
 
         context = {
-            'all_main_category': PackagesCategory.objects.all(),
-            'all_sub_category': SubPackagesCategory.objects.all(),
+            # 'all_main_category': PackagesCategory.objects.all(),
+            # 'all_sub_category': SubPackagesCategory.objects.all(),
             'general': general_all,
             'about': about_all
         }
+        request.session['main_title'] = context['general'].main_title
         request.session['facebook_link'] = context['general'].facebook_link
         request.session['instagram_link'] = context['general'].instagram_link
         request.session['whatsapp_link'] = context['general'].whatsapp_link
         request.session['youtube_link'] = context['general'].youtube_link
         request.session['linkedin_link'] = context['general'].linkedin_link
         request.session['address'] = context['general'].address
+        request.session['terms'] = context['general'].terms
+        request.session['policy'] = context['general'].policy
         return render(request, page + ".html", context)
     else:
         return render(request, "missing_general.html")

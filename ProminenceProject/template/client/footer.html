@@ -1,17 +1,71 @@
 <!-- ======= Footer ======= -->
 <footer id="footer">
     <div class="container">
-        <h3>Prominence Photography</h3>
+        <h3>{{ request.session.main_title }}</h3>
         <p>“The best thing about a picture is that it never changes, even when the people in it do.”</p>
-        <h4 class="text-center"><i class="fa fa-location"></i> <b>Office Location</b></h4>
-        <p class="text-center">{{ request.session.address }}</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-center"><i class="fa fa-location"></i> <b>Office Location</b></h5>
+                <p class="text-center">{{ request.session.address }}</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-center"><i class="fa fa-code"></i> <b> Terms and Conditions</b></h5>
+                <span><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                         data-bs-target="#exampleModal1">Terms</button> </span> &nbsp;
+                <span><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                         data-bs-target="#exampleModal2">Policy</button> </span>
+            </div>
+            <!-- Modal Terms -->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel1">Terms</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% autoescape off %}
+                                {{ request.session.terms }}
+                            {% endautoescape %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Policy -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel2">Policy</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% autoescape off %}
+                                {{ request.session.policy }}
+                            {% endautoescape %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
         <div class="social-links">
             <a href="{{ request.session.facebook_link }}" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="{{ request.session.instagram_link }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="{{ request.session.instagram_link }}" class="instagram"><i
+                    class="bx bxl-instagram"></i></a>
             <a href="{{ request.session.youtube_link }}" class="google-plus"><i class="bx bxl-youtube"></i></a>
         </div>
         <div class="copyright">
-            &copy; Copyright <strong><span>Prominence Photography</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>{{ request.session.main_title }}</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             Developed by <a href="https://kazishuvo.herokuapp.com/" target="_blank">KS</a>

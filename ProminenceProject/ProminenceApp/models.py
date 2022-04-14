@@ -1,6 +1,3 @@
-import datetime
-
-from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from djongo import models
@@ -8,6 +5,18 @@ from djongo import models
 # Create your models here.
 from smart_selects.db_fields import ChainedForeignKey
 from tinymce.models import HTMLField
+from io import BytesIO  # basic input/output operation
+from PIL import Image  # Imported to compress images
+from django.core.files import File  # to store files
+
+
+# image compression method
+def compress(image):
+    im = Image.open(image)
+    im_io = BytesIO()
+    im.save(im_io, 'JPEG', quality=50)
+    new_image = File(im_io, name=image.name)
+    return new_image
 
 
 class General(models.Model):
@@ -44,12 +53,14 @@ class General(models.Model):
                             choices=(('1', 'production'), ('2', 'development')))
     last_edited = models.DateTimeField(auto_now=True)
 
-    def save(self, **kwargs):
+    def save(self, *args, **kwargs):
         self.pk = self.id = 1
         if ('request') in kwargs and self.last_author is None:
             request = kwargs.pop('request')
             self.last_author = request.user
-        super(General, self).save(**kwargs)
+        new_image = compress(self.hero_image_field)
+        self.hero_image_field = new_image
+        super(General, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.main_title
@@ -69,12 +80,14 @@ class About(models.Model):
     long_about = HTMLField(verbose_name="Site Long About", null=True, blank=True)
     last_edited = models.DateTimeField(auto_now=True)
 
-    def save(self, **kwargs):
+    def save(self, *args, **kwargs):
         self.pk = self.id = 1
         if ('request') in kwargs and self.last_author is None:
             request = kwargs.pop('request')
             self.last_author = request.user
-        super(About, self).save(**kwargs)
+        new_image = compress(self.about_body_image)
+        self.about_body_image = new_image
+        super(About, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.short_about
@@ -105,6 +118,11 @@ class Team(models.Model):
                                  allowed_extensions=['png', 'jpg', 'jpeg'])])
     created_at = models.DateTimeField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+        new_image = compress(self.image)
+        self.image = new_image
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
@@ -116,6 +134,12 @@ class PackagesCategory(models.Model):
                                       validators=[FileExtensionValidator(
                                           allowed_extensions=['png', 'jpg', 'jpeg'])])
     created_at = models.DateTimeField(auto_now=True)
+
+    # calling image compression function before saving the data
+    def save(self, *args, **kwargs):
+        new_image = compress(self.category_photo)
+        self.category_photo = new_image
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.category_name
@@ -130,6 +154,11 @@ class SubPackagesCategory(models.Model):
                                           validators=[FileExtensionValidator(
                                               allowed_extensions=['png', 'jpg', 'jpeg'])])
     created_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        new_image = compress(self.sub_category_photo)
+        self.sub_category_photo = new_image
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.sub_category_name
@@ -150,6 +179,11 @@ class Packages(models.Model):
                                      validators=[FileExtensionValidator(
                                          allowed_extensions=['png', 'jpg', 'jpeg'])])
     created_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        new_image = compress(self.package_photo)
+        self.package_photo = new_image
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.package_name
@@ -174,6 +208,11 @@ class Gallery(models.Model):
                              validators=[FileExtensionValidator(
                                  allowed_extensions=['png', 'jpg', 'jpeg'])])
     created_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        new_image = compress(self.photo)
+        self.photo = new_image
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.gallery_category.category_name
