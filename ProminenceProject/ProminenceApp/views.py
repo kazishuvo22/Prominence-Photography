@@ -71,9 +71,19 @@ def packages(request, sub_id):
     page = "packages"
     if General.objects.filter(mode='1').exists():
         context = {
+            'general': General.objects.get(id=1),
             'all_packages': Packages.objects.filter(sub_category=sub_id)
         }
-        print(context['all_packages'])
+        request.session['main_title'] = context['general'].main_title
+        request.session['facebook_link'] = context['general'].facebook_link
+        request.session['instagram_link'] = context['general'].instagram_link
+        request.session['whatsapp_link'] = context['general'].whatsapp_link
+        request.session['youtube_link'] = context['general'].youtube_link
+        request.session['linkedin_link'] = context['general'].linkedin_link
+        request.session['address'] = context['general'].address
+        request.session['terms'] = context['general'].terms
+        request.session['policy'] = context['general'].policy
+        request.session['phone'] = context['general'].phone
         return render(request, page + ".html", context)
     else:
         return render(request, "missing_general.html")
