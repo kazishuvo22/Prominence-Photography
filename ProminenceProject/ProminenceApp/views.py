@@ -135,3 +135,8 @@ def terms(request):
         'term': General.objects.get(id=1).terms
     }
     return render(request, "terms.html", context)
+
+
+def adstxt(request):
+    line = "google.com, pub-3371734981192033, DIRECT, f08c47fec0942fa0"
+    return HttpResponse(line)

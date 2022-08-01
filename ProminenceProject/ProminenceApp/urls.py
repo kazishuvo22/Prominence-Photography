@@ -15,5 +15,6 @@ urlpatterns = [
                        name="packages_sub_category"),
                   path('contact/', views.contact, name='contact'),
                   path('terms/', views.terms, name='terms'),
+                  path('ads.txt/', views.adstxt, name='adstxt'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
